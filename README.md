@@ -20,6 +20,8 @@
 - Refactor our code to add constants file + create a components folder 
 - You should not be able to acces other routes without login
 - If token is not present , redirect. the user. to login page
+- Logout feature
+- Profile
 
 Compont structure 
 Body. 

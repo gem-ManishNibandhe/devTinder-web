@@ -1,4 +1,4 @@
-import React, { use } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { addUser } from '../utils/userSlice'
 import { useDispatch } from 'react-redux'
@@ -8,6 +8,7 @@ import { BASE_URL } from '../utils/constants'
 export const Login = () => {
     const [emailId, setEmailId] = React.useState('manunibandhe@gmail.com')
     const [password, setPassword] = React.useState('Manish@123')
+    const [error, setError] = useState('')
     const dispatch=useDispatch();
     const navigate=useNavigate();
 
@@ -20,7 +21,7 @@ export const Login = () => {
             dispatch(addUser(res.data))    // to add data in the store
             return navigate('/');
         }).catch((err)=>{
-            console.log(err)  
+            setError(err.response?.data || 'Login failed. Please try again.');
         })
     }
   return (
@@ -38,7 +39,7 @@ export const Login = () => {
             <legend className="fieldset-legend">Password</legend>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input" placeholder="" />
             </fieldset>
-
+            <p className="text-red-500">{error}</p>
             <div className="card-actions justify-end">
             <button className="btn btn-primary" onClick={handleLogin}>Login</button>
             </div>
