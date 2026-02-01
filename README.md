@@ -21,7 +21,11 @@
 - You should not be able to acces other routes without login
 - If token is not present , redirect. the user. to login page
 - Logout feature
+- Get the feed and add the feed in the store
 - Profile
+- Edit Profile feature
+- show Toast on save of profile save
+- See all my connections
 
 Compont structure 
 Body. 
