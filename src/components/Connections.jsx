@@ -12,7 +12,7 @@ export const Connections = () => {
     const fetchConnections = async () => {
         try {
            const res =await axios.get(BASE_URL+'/user/connections', { withCredentials: true });
-           console.log('Connections data:', res.data.data);
+           
            dispatch(addConnection(res.data.data));
         } catch (err) {
             console.error('Error fetching connections:', err);
@@ -50,8 +50,9 @@ export const Connections = () => {
 
                         <p className="text-sm text-gray-600 whitespace-normal">{conn.about}</p>
 
-                        <div className="flex justify-end">
-                            <button className="btn btn-primary">Message</button>
+                        <div className="flex justify-end my-3">
+                            <button className="btn btn-primary mx-3">Message</button>
+                            <button className="btn btn-secondary">Remove</button>
                         </div>
                     </div>
                 </div>

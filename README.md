@@ -26,6 +26,8 @@
 - Edit Profile feature
 - show Toast on save of profile save
 - See all my connections
+- New Page - see all my connections 
+- New Page - see all my connection requests
 
 Compont structure 
 Body. 

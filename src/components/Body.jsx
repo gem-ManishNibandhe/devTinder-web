@@ -17,7 +17,10 @@ export const Body = () => {
     if(userData){return ;}  // if user data is already present then no need to fetch again
     try{
       const res = await axios.get(BASE_URL+'/profile',{withCredentials:true})
-      dispatch(addUser(res.data))
+      
+      const userPayload = res?.data?.data ?? res?.data
+     
+      dispatch(addUser(userPayload))
     }
     catch(err){
       if(err.status===401){

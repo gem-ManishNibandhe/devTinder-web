@@ -12,7 +12,9 @@ export const Feed = () => {
     if(feed) return; // if feed is already present then no need to fetch again
     try{
       const res = await axios.get(BASE_URL+'/feed',{withCredentials:true})
-      dispatch(addFeed(res.data.data))
+      // normalize API response shape: some endpoints return { data: [...] } while others return [...]
+      const payload = res?.data?.data ?? res?.data
+      dispatch(addFeed(payload))
     }
     
     catch(err){
@@ -24,11 +26,25 @@ export const Feed = () => {
     getFeed();
   }, [])
   
+  // handle three states:
+  // - feed === null -> loading (don't render feed area)
+  // - Array.isArray(feed) && feed.length === 0 -> show empty state message
+  // - otherwise -> render list of user cards
+  if (!feed) return null
+
+  if (Array.isArray(feed) && feed.length === 0) {
+    return (
+      <div className="flex items-center justify-center p-8">
+        <p className="text-gray-600">No users available in the feed yet.</p>
+      </div>
+    )
+  }
+
   return (
-    feed && (
     <div className="flex flex-wrap justify-center gap-4 p-4">
-        <UserCard user={feed[0]}/>
+      {Array.isArray(feed) ? feed.map((user) => (
+        <UserCard key={user._id ?? user.id} user={user} />
+      )) : null}
     </div>
   )
-)
 }
