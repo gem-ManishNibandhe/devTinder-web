@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { BASE_URL } from '../utils/constants';
-import { addRequests } from '../utils/requestSlice';
+import { addRequests,removeRequests } from '../utils/requestSlice';
 import { useDispatch,useSelector } from 'react-redux';
 
 export const Requests = () => {
@@ -16,6 +16,17 @@ export const Requests = () => {
             dispatch(addRequests(res.data.data));
         } catch (err) {
             console.error('Error fetching requests:', err);
+        }
+    }
+
+    const reviewRequest = async (status ,requestId) => {
+        try {
+            await axios.post(BASE_URL+'/request/review/'+status+'/'+requestId, {}, { withCredentials: true });
+            // After accepting/rejecting a request, refetch the requests list to get the updated data
+            // fetchRequests();
+            dispatch(removeRequests(requestId));
+        } catch (err) {
+            console.error(`Error ${status   === 'accept' ? 'accepting' : 'rejecting'} request:`, err);
         }
     }
 
@@ -50,8 +61,8 @@ export const Requests = () => {
 
                         <p className="text-sm text-gray-600 whitespace-normal">{req.fromUserId.about}</p>  
                         <div className="flex justify-end my-3 items-center">
-                            <button className="btn btn-primary mx-3">Reject</button>
-                            <button className="btn btn-secondary">Accept</button>    
+                            <button className="btn btn-primary mx-3" onClick={()=> reviewRequest("rejected",req._id)}>Reject</button>
+                            <button className="btn btn-secondary" onClick={()=> reviewRequest("accepted",req._id)}>Accept</button>    
                         </div>
                     </div>
                 </div>

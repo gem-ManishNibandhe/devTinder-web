@@ -28,6 +28,12 @@
 - See all my connections
 - New Page - see all my connections 
 - New Page - see all my connection requests
+- Feature - Accept/Reject Connection Request
+
+Remaining 
+- Send/ignore the user card from Feed
+- Signup New user
+- E2E Testing
 
 Compont structure 
 Body. 

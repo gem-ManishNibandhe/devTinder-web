@@ -42,9 +42,12 @@ export const Feed = () => {
 
   return (
     <div className="flex flex-wrap justify-center gap-4 p-4">
-      {Array.isArray(feed) ? feed.map((user) => (
+      {/* {console.log(feed)} */}
+      {<UserCard key={feed[0]._id ?? feed[0].id} user={feed[0]} />}
+      {/* {Array.isArray(feed) ? feed[0].map((user) => (
+        
         <UserCard key={user._id ?? user.id} user={user} />
-      )) : null}
+      )) : null} */}
     </div>
   )
 }
