@@ -5,7 +5,7 @@ export const Footer = () => {
     <div>
         <footer className="footer sm:footer-horizontal footer-center bg-base-200 text-base-content p-4 fixed bottom-0 w-full">
             <aside>
-                <p>Copyright © {new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
+                <p>Copyright © {new Date().getFullYear()} - All right reserved by MN Ltd</p>
             </aside>
         </footer>
     </div>
