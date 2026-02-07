@@ -43,3 +43,14 @@ Body.
     Route=/connections => Connections 
     Route=/profile => profile
 
+
+# AWS Frontend code deployment 
+- Sign up to AWs account 
+- Create EC2 instance nad launch intance 
+- chmod 400 "DevTinder-secret.pem" - type in termainal in downloads folder - after .pem file downloaded 
+- connect to machine using     ssh -i "DevTinder-secret.pem" ubuntu@ec2-3-107-239-210.ap-southeast-2.compute.amazonaws.com. (logins to system)
+- Install node in instance  - Go to offical website and follow . Make sure to install exact version of node which          is install in your system. Node 24.11.1. 
+- clone git repo to instance uding git clone https://github.com/gem-ManishNibandhe/devTinder.git
+
+- install npm packages npm i in AWS
+- Build the app - npm run build
