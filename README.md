@@ -44,13 +44,63 @@ Body.
     Route=/profile => profile
 
 
-# AWS Frontend code deployment 
+# AWS code deployment 
 - Sign up to AWs account 
 - Create EC2 instance nad launch intance 
 - chmod 400 "DevTinder-secret.pem" - type in termainal in downloads folder - after .pem file downloaded 
 - connect to machine using     ssh -i "DevTinder-secret.pem" ubuntu@ec2-3-107-239-210.ap-southeast-2.compute.amazonaws.com. (logins to system)
 - Install node in instance  - Go to offical website and follow . Make sure to install exact version of node which          is install in your system. Node 24.11.1. 
-- clone git repo to instance uding git clone https://github.com/gem-ManishNibandhe/devTinder.git
+# Frontend 
+    - clone git repo to instance uding git clone https://github.com/gem-ManishNibandhe/devTinder.git
 
-- install npm packages npm i in AWS
-- Build the app - npm run build
+    - install npm packages npm i in AWS. - install dependencies 
+    - Build the app - npm run build
+    - sudo apt update - to update the system
+    - sudo apy install nginx  - to run app and load to http 
+    Start nginx 
+    - sudo systemctl start nginx 
+    - sudo systemctl enable nginx
+    - Copy code from dist(buid file) /var/www/html
+    - sudo scp -r dist/* /var/www/html/
+    - Enable port :80 on your instance.  - instance->security-> security group ->add port and save.
+
+# Backend
+   - npm run start/npm start
+   - allowed ec2 instance public IP on mongodb server 
+   - pm (process manager)
+   - Installed npm install pm2  -g    - keeps your server running in the background
+   - pm2 start npm -- start    /// or  pm2 start npm --name "devTinderBackend" -- start. (adds process name)
+
+   - pm2 logs. - to check the logs 
+   - pm2 flush npm   -  removes all the logs
+   - pm2 list, pm2 flust <name> ,pm2 stop <name> , pm2 delete <name>
+
+
+    # nginx congig
+    Frontend = devTinder.com
+    Backend = devTinder.com:7777 => devTinder.com/api
+
+    sudo nano /etc/nginx/
+    ngix config  - > etc/nginx/available-sites/default
+    to point to localhost:7777 to api/ we need to make nginx prosy pass 
+    Add below code in nginx file - >. etc/nginx/available-sites/default
+
+    server_name 3.107.239.210;
+
+
+    location /api/ {
+        proxy_pass http://localhost:7777/;
+        proxy_http_version 1.1;
+
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    - Restart nginx -> sudo systemctl restart nginx 
+    - Modify the BASe_URL  in frontend project to "/api"
