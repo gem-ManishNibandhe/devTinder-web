@@ -131,3 +131,17 @@ Body.
  - Write code for Sending email address 
  - Make the email dynamic by passing more params to the run function
 
+
+ # Scheduling cron jobs in NodeJs
+
+ - Installing node-cron
+ - Learning about cron expression syntax - crontab.guru
+ - Schedule a job 
+ - date-fns 
+ - Find all the unique email Ids who have got connection request in previous day 
+ - Send Email
+ - Explore queue mechnaism to send bulk emails // like to send emails lakhs in bulks
+ - Amazon SES bulk Emails 
+ - Make sendEmail function dynamic
+ - bee-queue & bull npm packages
+
