@@ -104,3 +104,30 @@ Body.
 
     - Restart nginx -> sudo systemctl restart nginx 
     - Modify the BASe_URL  in frontend project to "/api"
+
+# Adding a custom Domian Name
+
+ - purchase domain namr from godaddy
+ - signup on cloudflare & add a new domain name 
+ - change the name servers on godaddy and point to cloudflare 
+ - Wait for sometime till your nameserver gets updated ~ 20mins
+ - DNS record : A devtinders.shop 3.107.239.210
+ - Enable SSL for website
+
+
+ # Sending Email using SES
+ - Create an IAM user 
+ - Give access to AmazonSESFullAcess
+ - Amazon SES: Create an Identity
+ - Verify your domian name 
+ - Verify your email address / identity
+ - Get the domain CNAME and add in cloudflare DNS ->records
+ - Install AWS SDK - v3 
+ - Code Example : https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/ses#code-examples
+ - Setup sesClient 
+ - Access Credentials should be created in IAM under SecurityCredentials Tab
+ - Add the credentilas to. the .env file
+ - Write code for sesClient 
+ - Write code for Sending email address 
+ - Make the email dynamic by passing more params to the run function
+
