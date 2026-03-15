@@ -48,6 +48,7 @@ export const Chat = () => {
         }
         
     // emit to server
+    console.log('Emitting sendMessage with payload:', { firstName: user?.firstName, lastName: user?.lastName, userId, targetUserId, text: newMessage });
     socket.emit('sendMessage', { firstName: user?.firstName, lastName: user?.lastName, userId, targetUserId, text: newMessage });
         setNewMessage('')
         

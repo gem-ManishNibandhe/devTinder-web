@@ -14,21 +14,8 @@ export const createSocketConnection = () => {
             socket = io('/', { path: '/api/socket.io', withCredentials: true });
         }
 
-        socket.on('connect', () => {
-            console.log('Socket connected', socket.id);
-        });
 
-        socket.on('disconnect', (reason) => {
-            console.log('Socket disconnected', reason);
-        });
     }
 
     return socket;
-}
-
-export const disconnectSocket = () => {
-    if (socket) {
-        socket.disconnect();
-        socket = null;
-    }
 }
