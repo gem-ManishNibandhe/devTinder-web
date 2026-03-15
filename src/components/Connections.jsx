@@ -3,6 +3,7 @@ import React from 'react'
 import { BASE_URL } from '../utils/constants';
 import { addConnection } from '../utils/connectionSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export const Connections = () => {
 
@@ -51,7 +52,9 @@ export const Connections = () => {
                         <p className="text-sm text-gray-600 whitespace-normal">{conn.about}</p>
 
                         <div className="flex justify-end my-3">
-                            <button className="btn btn-primary mx-3">Message</button>
+                            <Link to={`/chat/${conn._id}`}>
+                                <button className="btn btn-primary mx-3">Message</button>
+                            </Link>
                             <button className="btn btn-secondary">Remove</button>
                         </div>
                     </div>

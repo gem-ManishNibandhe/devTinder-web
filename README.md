@@ -145,3 +145,22 @@ Body.
  - Make sendEmail function dynamic
  - bee-queue & bull npm packages
 
+
+
+
+# Real Time Chat using Websockets(Sockets.io)
+    - Build the UI for chat window on /chat/:targetUserId
+    - Setup socket.io in backend 
+    - npm i socket.io
+    - Setup frontend socket.io-client 
+    - Initilize the chat 
+    - createSocketConnection
+    - Listen to events 
+    - Homwork - Improve the UI
+    - Fix security bug - Can i send messages to a person who is not my friend? - auth in web sockets
+    - Fix bug - If I'am not friend , then I should not be able to send messages
+    - HomeWork - Fest : Show Green symbol if I am online - [last seen 2 hours ago]
+    - HomeWork - Limit messages when fetching from db - Currently its simply loading all the messages 
+    - Project Ideas - Tic tac toe game 
+    - Project Idea 2 - Chess 
+    - Project Idea 3 - type racing 
