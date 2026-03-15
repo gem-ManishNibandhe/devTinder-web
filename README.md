@@ -64,6 +64,20 @@ Body.
     - sudo scp -r dist/* /var/www/html/
     - Enable port :80 on your instance.  - instance->security-> security group ->add port and save.
 
+
+    - If there is any change in IP address(when AES EC2 is stopped) follow these steps 
+     1. start the process again 
+     2. take public ip and check on browser with http:// ip address (ui) for backend http://ip:7777
+     3. update proxy mapping in cloudflare DNS
+     4. Update nginx file on server  (Not needed always)
+        - open fiile with - sudo nano /etc/nginx/sites-available/default
+        - update domain name either with IP address or domain name both will work
+        - save the file
+        - restart nginx sudo systemctl restart 
+        
+    5. start pm2 restart npm
+
+
 # Backend
    - npm run start/npm start
    - allowed ec2 instance public IP on mongodb server 
