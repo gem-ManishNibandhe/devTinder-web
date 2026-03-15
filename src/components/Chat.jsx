@@ -49,7 +49,7 @@ export const Chat = () => {
         
     // emit to server
     console.log('Emitting sendMessage with payload:', { firstName: user?.firstName, lastName: user?.lastName, userId, targetUserId, text: newMessage });
-    // socket.emit('sendMessage', { firstName: user?.firstName, lastName: user?.lastName, userId, targetUserId, text: newMessage });
+    socket.emit('sendMessage', { firstName: user?.firstName, lastName: user?.lastName, userId, targetUserId, text: newMessage });
         setNewMessage('')
         
     }
@@ -63,8 +63,6 @@ export const Chat = () => {
         }
         
         const socket = createSocketConnection();
-
-        console.log('Joining chat with:', { firstName: user?.firstName, userId, targetUserId });
 
         // join the chat room for this pair
         socket.emit('joinChat', { firstName: user?.firstName, userId, targetUserId });
